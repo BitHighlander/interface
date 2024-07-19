@@ -304,7 +304,7 @@ function AddLiquidity() {
             ...txn,
             gasLimit: calculateGasMargin(estimate),
           }
-
+          console.log("newTxn: ", newTxn)
           return provider
             .getSigner()
             .sendTransaction(newTxn)

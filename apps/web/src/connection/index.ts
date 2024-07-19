@@ -229,6 +229,7 @@ export function getConnection(c: Connector | ConnectionType) {
     }
     return connection
   } else {
+    console.log('getConnection c', c)
     switch (c) {
       case ConnectionType.INJECTED:
         return deprecatedInjectedConnection

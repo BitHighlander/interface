@@ -1,3 +1,4 @@
+const TAG = ' | useCurrentBlockTimestamp | '
 import { BigNumber } from '@ethersproject/bignumber'
 import { useSingleCallResult } from 'lib/hooks/multicall'
 import { useMemo } from 'react'
@@ -7,6 +8,8 @@ import { useInterfaceMulticall } from './useContract'
 
 // gets the current timestamp from the blockchain
 export default function useCurrentBlockTimestamp(options?: ListenerOptions): BigNumber | undefined {
+  let tag = TAG + ' | useCurrentBlockTimestamp | '
+  console.log(tag, 'options: ', options)
   const multicall = useInterfaceMulticall()
   const resultStr: string | undefined = useSingleCallResult(
     multicall,

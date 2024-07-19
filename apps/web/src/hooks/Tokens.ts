@@ -1,3 +1,4 @@
+const TAG = ' | Tokens | '
 import { ChainId, Currency, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import { TokenAddressMap } from 'lib/hooks/useTokenList/utils'
@@ -34,9 +35,13 @@ function useTokensFromMap(tokenMap: TokenAddressMap, chainId: Maybe<ChainId>): {
 
 /** Returns all tokens from local lists + user added tokens */
 export function useFallbackListTokens(chainId: Maybe<ChainId>): { [address: string]: Token } {
+  const tag = TAG + ' | useFallbackListTokens | '
   const fallbackListTokens = useCombinedInactiveLists()
+  //console.log(tag, 'fallbackListTokens:', fallbackListTokens)
   const tokensFromMap = useTokensFromMap(fallbackListTokens, chainId)
+  //console.log(tag, 'tokensFromMap:', tokensFromMap)
   const userAddedTokens = useUserAddedTokens()
+  //console.log(tag, 'userAddedTokens:', tokensFromMap)
   return useMemo(() => {
     return (
       userAddedTokens
@@ -80,14 +85,18 @@ export function useCurrencyInfo(
   chainId?: ChainId,
   skip?: boolean
 ): Maybe<CurrencyInfo> {
+  let tag = TAG + ' | useCurrencyInfo | '
   const { chainId: connectedChainId } = useWeb3React()
-
+  //console.log(tag,'addressOrCurrency:',addressOrCurrency)
+  //console.log(tag,'chainId:',chainId)
   const address =
     typeof addressOrCurrency === 'string'
       ? addressOrCurrency
       : addressOrCurrency?.isNative
       ? NATIVE_CHAIN_ID
       : addressOrCurrency?.address
+
+  //console.log(tag,'address:',address)
   const chainIdWithFallback =
     (typeof addressOrCurrency === 'string' ? chainId : addressOrCurrency?.chainId) ?? connectedChainId
 

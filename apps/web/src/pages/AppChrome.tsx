@@ -6,7 +6,7 @@ export default function AppChrome() {
   return (
     <>
       <Popups />
-      <Polling />
+      {/*<Polling />*/}
       <TopLevelModals />
     </>
   )

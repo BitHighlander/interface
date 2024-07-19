@@ -23,7 +23,7 @@ export enum PollingInterval {
   Slow = ms(`5m`),
   Normal = ms(`1m`),
   Fast = AVERAGE_L1_BLOCK_TIME,
-  LightningMcQueen = ms(`3s`), // approx block interval for polygon
+  LightningMcQueen = ms(`30s`), // approx block interval for polygon
 }
 
 // Polls a query only when the current component is mounted, as useQuery's pollInterval prop will continue to poll after unmount

@@ -118,67 +118,67 @@ const Spinner = styled.div<{ warning: boolean }>`
 `
 
 export default function Polling() {
-  const { chainId } = useWeb3React()
-  const blockNumber = useBlockNumber()
-  const [isMounting, setIsMounting] = useState(false)
-  const [isHover, setIsHover] = useState(false)
-  const isNftPage = useIsNftPage()
-  const isLandingPage = useIsLandingPage()
+  // const { chainId } = useWeb3React()
+  // const blockNumber = useBlockNumber()
+  // const [isMounting, setIsMounting] = useState(false)
+  // const [isHover, setIsHover] = useState(false)
+  // const isNftPage = useIsNftPage()
+  // const isLandingPage = useIsLandingPage()
+  //
+  // const waitMsBeforeWarning = useMemo(
+  //   () => (chainId ? getChainInfo(chainId)?.blockWaitMsBeforeWarning : undefined) ?? DEFAULT_MS_BEFORE_WARNING,
+  //   [chainId]
+  // )
+  // const machineTime = useMachineTimeMs(AVERAGE_L1_BLOCK_TIME)
+  // const blockTime = useCurrentBlockTimestamp(
+  //   useMemo(() => ({ blocksPerFetch: /* 5m / 12s = */ 25 * getBlocksPerMainnetEpochForChainId(chainId) }), [chainId])
+  // )
+  // const warning = Boolean(!!blockTime && machineTime - blockTime.mul(1000).toNumber() > waitMsBeforeWarning)
 
-  const waitMsBeforeWarning = useMemo(
-    () => (chainId ? getChainInfo(chainId)?.blockWaitMsBeforeWarning : undefined) ?? DEFAULT_MS_BEFORE_WARNING,
-    [chainId]
-  )
-  const machineTime = useMachineTimeMs(AVERAGE_L1_BLOCK_TIME)
-  const blockTime = useCurrentBlockTimestamp(
-    useMemo(() => ({ blocksPerFetch: /* 5m / 12s = */ 25 * getBlocksPerMainnetEpochForChainId(chainId) }), [chainId])
-  )
-  const warning = Boolean(!!blockTime && machineTime - blockTime.mul(1000).toNumber() > waitMsBeforeWarning)
-
-  useEffect(
-    () => {
-      if (!blockNumber) {
-        return
-      }
-
-      setIsMounting(true)
-      const mountingTimer = setTimeout(() => setIsMounting(false), 1000)
-
-      // this will clear Timeout when component unmount like in willComponentUnmount
-      return () => {
-        clearTimeout(mountingTimer)
-      }
-    },
-    [blockNumber] //useEffect will run only one time
-    //if you pass a value to array, like this [data] than clearTimeout will run every time this value changes (useEffect re-run)
-  )
-
-  //TODO - chainlink gas oracle is really slow. Can we get a better data source?
-
-  const blockExternalLinkHref = useMemo(() => {
-    if (!chainId || !blockNumber) return ''
-    return getExplorerLink(chainId, blockNumber.toString(), ExplorerDataType.BLOCK)
-  }, [blockNumber, chainId])
-
-  if (isNftPage || isLandingPage) {
-    return null
-  }
+  // useEffect(
+  //   () => {
+  //     if (!blockNumber) {
+  //       return
+  //     }
+  //
+  //     setIsMounting(true)
+  //     const mountingTimer = setTimeout(() => setIsMounting(false), 1000)
+  //
+  //     // this will clear Timeout when component unmount like in willComponentUnmount
+  //     return () => {
+  //       clearTimeout(mountingTimer)
+  //     }
+  //   },
+  //   [blockNumber] //useEffect will run only one time
+  //   //if you pass a value to array, like this [data] than clearTimeout will run every time this value changes (useEffect re-run)
+  // )
+  //
+  // //TODO - chainlink gas oracle is really slow. Can we get a better data source?
+  //
+  // const blockExternalLinkHref = useMemo(() => {
+  //   if (!chainId || !blockNumber) return ''
+  //   return getExplorerLink(chainId, blockNumber.toString(), ExplorerDataType.BLOCK)
+  // }, [blockNumber, chainId])
+  //
+  // if (isNftPage || isLandingPage) {
+  //   return null
+  // }
 
   return (
     <RowFixed>
-      <StyledPolling onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
-        <StyledPollingBlockNumber breathe={isMounting} hovering={isHover} warning={warning}>
-          <ExternalLink href={blockExternalLinkHref}>
-            <MouseoverTooltip
-              text={<Trans>The most recent block number on this network. Prices update on every block.</Trans>}
-            >
-              {blockNumber}&ensp;
-            </MouseoverTooltip>
-          </ExternalLink>
-        </StyledPollingBlockNumber>
-        <StyledPollingDot warning={warning}>{isMounting && <Spinner warning={warning} />}</StyledPollingDot>{' '}
-      </StyledPolling>
-      {warning && <ChainConnectivityWarning />}
+      {/*<StyledPolling onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>*/}
+      {/*  <StyledPollingBlockNumber breathe={isMounting} hovering={isHover} warning={warning}>*/}
+      {/*    <ExternalLink href={blockExternalLinkHref}>*/}
+      {/*      <MouseoverTooltip*/}
+      {/*        text={<Trans>The most recent block number on this network. Prices update on every block.</Trans>}*/}
+      {/*      >*/}
+      {/*        {blockNumber}&ensp;*/}
+      {/*      </MouseoverTooltip>*/}
+      {/*    </ExternalLink>*/}
+      {/*  </StyledPollingBlockNumber>*/}
+      {/*  <StyledPollingDot warning={warning}>{isMounting && <Spinner warning={warning} />}</StyledPollingDot>{' '}*/}
+      {/*</StyledPolling>*/}
+      {/*{warning && <ChainConnectivityWarning />}*/}
     </RowFixed>
   )
 }

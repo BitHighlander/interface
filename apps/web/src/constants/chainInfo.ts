@@ -4,7 +4,7 @@ import { darkTheme } from 'theme/colors'
 
 import { SupportedL1ChainId, SupportedL2ChainId } from './chains'
 
-export const AVERAGE_L1_BLOCK_TIME = ms(`12s`)
+export const AVERAGE_L1_BLOCK_TIME = ms(`112s`)
 export const DEFAULT_MS_BEFORE_WARNING = ms(`10m`)
 
 /**
