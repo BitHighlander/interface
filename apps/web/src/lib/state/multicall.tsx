@@ -30,7 +30,7 @@ export function MulticallUpdater() {
   const latestMainnetBlockNumber = useMainnetBlockNumber()
   console.log(tag, 'latestMainnetBlockNumber:', latestMainnetBlockNumber)
   const mainnetContract = useMainnetInterfaceMulticall()
-
+  console.log(tag, 'mainnetContract:', mainnetContract.address)
   return (
     <>
       <multicall.Updater

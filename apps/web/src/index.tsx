@@ -58,7 +58,7 @@ function Updaters() {
       <ThemeColorMetaUpdater />
       <ApplicationUpdater />
       <ActivityStateUpdater />
-      <MulticallUpdater />
+      {/*<MulticallUpdater />*/}
       <LogsUpdater />
     </>
   )
